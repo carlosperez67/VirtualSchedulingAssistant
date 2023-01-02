@@ -1,3 +1,2 @@
-import quickstart as qs
 
-main()
+print("hello world")
