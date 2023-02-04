@@ -6,7 +6,7 @@ class Day:
     def __int__(self, events):
         self.events = events
 
-        for i in range(int(1140 / self.interval)):
+        for i in range(1140 // self.interval):
             self.schedule.add(True)
 
 
