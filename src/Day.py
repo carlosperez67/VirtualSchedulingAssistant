@@ -33,7 +33,7 @@ class Day:
         if self.checkIfAvailable(startTime, duration):
             # actually setting the events in the schedule, assuming that it is empty
             for i in range(index, index + duration // self.interval):
-                self.schedule = ev
+                self.schedule[i] = ev
             return True
         else:
             return False
@@ -57,7 +57,7 @@ class Day:
         stringV = ""
         for i in range(len(self.schedule)):
             if type(self.schedule[i]) == bool:
-                stringV = stringV + "," + toString(self.schedule[i])
+                stringV = stringV + "," + str(self.schedule[i])
             else:
                 stringV = stringV + "," + self.schedule[i].name
 
