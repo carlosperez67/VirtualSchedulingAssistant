@@ -13,11 +13,11 @@ class Event:
         self.name = name
         self.description = description
 
-    
     def __str__(self) -> str:
-        retStr = self.name +  "\n" + self.description
+        retStr = self.name + "\n" + self.description
 
     def to24Time(self) -> str:
         return self.duration // 60 + " : " + self.duration % 60
-        
 
+
+testEvent = Event("Test", "start at 10am!!", 600, 60)
