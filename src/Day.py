@@ -1,4 +1,6 @@
 import Event
+
+
 class Day:
     events = []
     tasks = []
@@ -19,28 +21,34 @@ class Day:
         for ev in events:
             self.scheduleEvent(ev)
 
+    # tries to schedule event in correct place, return true if successful, else false and does nothing
     def scheduleEvent(self, ev):
         startTime = ev.startTime
         duration = ev.duration
-        successful = True
-
         index = startTime // self.interval  # the start time of the event within our interval
 
-        # This for loop adds the events to the schedule at the correct time
-        # TODO: for future, check error handling for when the event goes over the time
+        # for future, check error handling for when the event goes over the time
+        # the GUARD to check if everything in the schedule is empty
+        if self.checkIfAvailable(startTime, duration):
+            # actually setting the events in the schedule, assuming that it is empty
+            for i in range(index, index + duration // self.interval):
+                self.schedule = ev
+            return True
+        else:
+            return False
+
+    # checking if all the times in the schedule are True, aka nothing scheduled
+    def checkIfAvailable(self, startTime, duration):
+        index = startTime // self.interval  # the start time of the event within our interval
+        empty = True
         for i in range(index, index + duration // self.interval):
-            if type(self.schedule[i]) == bool and self.schedule[i]:
-                self.schedule[i] = ev
+            if type(self.schedule[i]) == bool:
+                empty = empty and self.schedule
             else:
-                successful = False
+                empty = False
+                break
 
-        return successful
-
-
-
-
+        return empty
 
     def getNumEvents(self):
         return len(self.events)
-
-
